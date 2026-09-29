@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>PatientCare</title>
+    <meta name="author" content="Avinash Gyawali">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <style>
+      .project { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+      .project h1 { font-family: 'Lato', Verdana, Helvetica, sans-serif; font-size: 30px; font-weight: 700; text-align: center; margin: 10px 0 18px; line-height: 1.3; }
+      .project .authors, .project .venue { text-align: center; font-size: 16px; margin: 6px 0; }
+      .project .venue { font-style: italic; color: #555; }
+      .project .buttons { text-align: center; margin: 22px 0 28px; }
+      .project strong { font-size: inherit; }
+      .project .first-author { font-weight: 900; color: #000; -webkit-text-stroke: 0.4px #000; }
+      .project .btn { display: inline-block; padding: 8px 18px; margin: 4px; border-radius: 20px; background: #363636; color: #fff; font-weight: 700; font-size: 15px; }
+      .project .btn:hover { background: #1a73e8; color: #fff; }
+      .project .btn.disabled { background: #bbb; cursor: default; pointer-events: none; }
+      .project figure { margin: 0 0 30px; text-align: center; }
+      .project figure img { width: 100%; border-radius: 8px; }
+      .project figcaption { font-size: 14px; color: #555; margin-top: 8px; }
+      .project h2 { font-size: 22px; text-align: center; margin: 10px 0 12px; }
+      .project .abstract { font-size: 16px; line-height: 1.6; text-align: justify; }
+    </style>
+  </head>
+  <body>
+    <div class="project">
+      <h1>PatientCare: A Benchmark for Fine-Grained Clinical Action Understanding in Patient Safety</h1>
+      <p class="authors"><strong class="first-author">* Avinash Gyawali</strong>, Priyank Pathak, Sirshapan Mitra, Shruti Vyas, Yogesh S Rawat</p>
+      <p class="venue">Preprint - arXiv</p>
+
+      <div class="buttons">
+        <span class="btn disabled">arXiv (Coming Soon)</span>
+      </div>
+
+      <figure>
+        <img src="../images/patientcare_main.png" alt="PatientCare main figure">
+        <!-- <figcaption>Figure caption goes here.</figcaption> -->
+      </figure>
+
+      <h2>Abstract</h2>
+      <p class="abstract">
+        AI-driven patient care has significant potential to improve hospital safety by detecting hazardous behaviors and continuously monitoring patient activities, especially in the absence of clinical staff, while also reducing operational costs and manual workload. However, progress in this area remains limited due to the lack of diverse, well-annotated datasets capturing a broad spectrum of clinically relevant actions. This gap is largely driven by privacy constraints in real-world hospital care and strict government regulations. Existing action recognition datasets are inadequate for this purpose, as they are typically collected in non-clinical environments and fail to capture fine-grained patient-care activities, e.g. falling on the ground, tampering with IV lines, walking with a walker etc. <strong>We introduce PatientCare, a diverse dataset, with synthetic and real videos, specifically designed for patient monitoring in the hospital domain.</strong> PatientCare focuses on clinically meaningful activities and follows the World Health Organization patient care framework, defining 23 fine-grained action classes. Unlike prior datasets, it emphasizes clinically relevant scenarios, enabling more precise evaluation of action recognition models in patient-care contexts. To demonstrate the utility of PatientCare, <strong>we also establish a realistic video benchmark for hospital-based action recognition and evaluate state-of-the-art action recognition models.</strong> Our results highlight both the inherent challenges of fine-grained patient monitoring and the effectiveness of synthetic data in addressing existing limitations. We will release the dataset, benchmarks, and code to facilitate further research in clinically relevant action understanding.
+      </p>
+    </div>
+  </body>
+</html>
