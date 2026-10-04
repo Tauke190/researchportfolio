@@ -22,6 +22,7 @@
       .project .btn.disabled { background: #bbb; cursor: default; pointer-events: none; }
       .project figure { margin: 0 0 30px; text-align: center; }
       .project figure img { width: 100%; border-radius: 8px; }
+      .project figure.hero { width: min(1120px, 94vw); margin-left: 50%; transform: translateX(-50%); }
       .project figcaption { font-size: 14px; color: #555; margin-top: 8px; }
       .project h2 { font-size: 22px; text-align: center; margin: 10px 0 12px; }
       .project .abstract { font-size: 16px; line-height: 1.6; text-align: justify; }
@@ -37,20 +38,28 @@
         <span class="btn disabled">arXiv (Coming Soon)</span>
       </div>
 
-      <figure>
-        <img src="../images/streamprune_1_TTS.png" alt="StreamPrune overview: Temporal Token Similarity (TTS) and Content Adaptive Caching">
-        <figcaption><strong>Temporal Token Similarity (TTS).</strong> <!-- TODO: caption --></figcaption>
-      </figure>
-
-      <figure>
-        <img src="../images/streamprune_2_CAC.png" alt="Content Adaptive Caching (CAC)">
-        <figcaption><strong>Content Adaptive Caching (CAC).</strong> <!-- TODO: caption --></figcaption>
+      <figure class="hero">
+        <img src="../gif/streamprune-overview.gif" alt="StreamPrune overview animation">
+        <figcaption><strong>StreamPrune overview.</strong> <!-- TODO: caption --></figcaption>
       </figure>
 
       <h2>Abstract</h2>
       <p class="abstract">
         Multimodal Large Language Models (MLLMs) have made significant progress in visual-language reasoning, including long- and short-term video understanding, but sampling video at high frame rates remains computationally expensive. Perceiving fast-changing or transient events requires dense frame sampling, yet the cost of processing dense visual tokens scales with frame rate. Moreover, consecutive frames in a video stream are often highly similar, causing much of this computation to be spent on redundant content. <strong>We propose StreamPrune, a training-free, query-free, plug-and-play token pruning module for streaming video LLMs that discards visually redundant tokens using only inter-frame similarity, measured by the Temporal Token Similarity (TTS) module.</strong> It is independent of the downstream query and transfers across multiple streaming MLLM backbones. <strong>We further introduce the Content-Adaptive Caching (CAC) module, which retains only temporally novel tokens and organizes them in a content-adaptive cache that is compatible with existing streaming retrieval.</strong> Across six streaming video benchmarks, StreamPrune reduces visual tokens by 92.6 &plusmn; 1.8% and increases encoding throughput by 6.18&times;, at an average accuracy drop of only 0.8 &plusmn; 2.9 points (both spreads are standard deviations across the six benchmarks), while outperforming existing pruning methods on StreamingBench and StreamBench. Code will be released publicly after the review process.
       </p>
+
+      <!-- TTS figure hidden: information is already conveyed by the overview GIF above.
+      <figure>
+        <img src="../images/streamprune_1_TTS.png" alt="StreamPrune overview: Temporal Token Similarity (TTS) and Content Adaptive Caching">
+        <figcaption><strong>Temporal Token Similarity (TTS).</strong></figcaption>
+      </figure>
+      -->
+
+      <figure>
+        <img src="../images/streamprune_2_CAC.png" alt="Content Adaptive Caching (CAC)">
+        <figcaption><strong>Content Adaptive Caching (CAC).</strong> <!-- TODO: caption --></figcaption>
+      </figure>
+
     </div>
   </body>
 </html>
