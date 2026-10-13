@@ -150,9 +150,18 @@
                 August 2025 – November 2025
                 <br><br>
                 <ul style="margin: 5px 0; padding-left: 20px;">
-                  <li>Designed and implemented a knowledge distillation pipeline to transfer zero-shot image classification capabilities from CLIP’s ViT-based visual encoder (e.g., FastViT) to a lightweight ResNet-50 backbone.</li>
+
+
+
+
+
+				   <li><strong>Cross-architecture knowledge distillation:</strong> Studied how zero-shot image classification transfers from CLIP's ViT-based visual encoders to a lightweight hybrid student (FastViT) that combines convolution and self-attention layers.</li>
+ 				   <li><strong>Distillation objectives:</strong> Compared final-feature distillation, intermediate-layer distillation and contrastive distillation to identify which signals best transfer CLIP's vision-language alignment.</li>
+                   <li><strong>Parameter-efficient student adaptation:</strong> Evaluated LoRA, adapters and learnable tokens in the student model to analyze where and how it acquires zero-shot capabilities from the CLIP teacher.</li>
+					
+                  <!-- <li>Designed and implemented a knowledge distillation pipeline to transfer zero-shot image classification capabilities from CLIP’s ViT-based visual encoder (e.g., FastViT) to a lightweight ResNet-50 backbone.</li>
                   <li>Developing a pre-encoder token-pruning method for video MLLMs — run-length tokenization that merges temporally redundant patches across frames — to run long-video inference under a fixed compute budget with no loss in accuracy.</li>
-                  <li>Developing streaming video MLLMs that combine token compression and semantic-aware pruning to sustain high-FPS perception under fixed compute budgets, targeting latency-critical settings such as autonomous driving and robotics.</li>
+                  <li>Developing streaming video MLLMs that combine token compression and semantic-aware pruning to sustain high-FPS perception under fixed compute budgets, targeting latency-critical settings such as autonomous driving and robotics.</li> -->
                 </ul>
               </td>
             </tr>
