@@ -25,6 +25,16 @@
       .project figcaption { font-size: 14px; color: #555; margin-top: 8px; }
       .project h2 { font-size: 22px; text-align: center; margin: 10px 0 12px; }
       .project .abstract { font-size: 16px; line-height: 1.6; text-align: justify; }
+      .project h3 { font-size: 16px; text-align: center; margin: 24px 0 8px; }
+      .project .table-wrap { overflow-x: auto; }
+      .project table.results { width: 100%; border-collapse: collapse; font-size: 14px; border-top: 2px solid #333; border-bottom: 2px solid #333; }
+      .project table.results th, .project table.results td { padding: 6px 7px; text-align: center; white-space: nowrap; }
+      .project table.results thead tr:last-child th { border-bottom: 1px solid #333; }
+      .project table.results th.group { border-bottom: 1px solid #ccc; }
+      .project table.results th:first-child, .project table.results td:first-child { text-align: left; }
+      .project table.results .split { border-left: 3px double #999; }
+      .project table.results b { font-weight: 700; }
+      .project .table-caption { font-size: 14px; color: #555; text-align: center; margin: 6px 0 24px; }
     </style>
   </head>
   <body>
@@ -46,6 +56,45 @@
       <p class="abstract">
         AI-driven patient care has significant potential to improve hospital safety by detecting hazardous behaviors and continuously monitoring patient activities, especially in the absence of clinical staff, while also reducing operational costs and manual workload. However, progress in this area remains limited due to the lack of diverse, well-annotated datasets capturing a broad spectrum of clinically relevant actions. This gap is largely driven by privacy constraints in real-world hospital care and strict government regulations. Existing action recognition datasets are inadequate for this purpose, as they are typically collected in non-clinical environments and fail to capture fine-grained patient-care activities, e.g. falling on the ground, tampering with IV lines, walking with a walker etc. <strong>We introduce PatientCare, a diverse dataset, with synthetic and real videos, specifically designed for patient monitoring in the hospital domain.</strong> PatientCare focuses on clinically meaningful activities and follows the World Health Organization patient care framework, defining 23 fine-grained action classes. Unlike prior datasets, it emphasizes clinically relevant scenarios, enabling more precise evaluation of action recognition models in patient-care contexts. To demonstrate the utility of PatientCare, <strong>we also establish a realistic video benchmark for hospital-based action recognition and evaluate state-of-the-art action recognition models.</strong> Our results highlight both the inherent challenges of fine-grained patient monitoring and the effectiveness of synthetic data in addressing existing limitations. We will release the dataset, benchmarks, and code to facilitate further research in clinically relevant action understanding.
       </p>
+
+      <h2>Results</h2>
+
+      <h3>Zero-shot Open-Vocabulary Evaluation</h3>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr><th rowspan="2">Model</th><th class="group" colspan="5">Real World</th><th class="group split" colspan="5">Synthetic</th></tr>
+            <tr><th>Top-1 &uarr;</th><th>Top-5 &uarr;</th><th>Prec. &uarr;</th><th>Rec. &uarr;</th><th>F1 &uarr;</th><th class="split">Top-1 &uarr;</th><th>Top-5 &uarr;</th><th>Prec. &uarr;</th><th>Rec. &uarr;</th><th>F1 &uarr;</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>T2L L/14</td><td><b>43.2</b></td><td>78.1</td><td><b>41.3</b></td><td><b>50.8</b></td><td><b>39.1</b></td><td class="split"><b>65.9</b></td><td><b>92.1</b></td><td><b>69.3</b></td><td><b>61.3</b></td><td><b>59.9</b></td></tr>
+            <tr><td>T2L B/16</td><td>37.8</td><td>71.5</td><td>35.2</td><td>48.8</td><td>36.1</td><td class="split">50.4</td><td>86.5</td><td>58.7</td><td>47.2</td><td>45.1</td></tr>
+            <tr><td>FROSTER</td><td>36.0</td><td>68.5</td><td>31.4</td><td>31.1</td><td>26.8</td><td class="split">32.2</td><td>62.9</td><td>39.9</td><td>27.4</td><td>24.4</td></tr>
+            <tr><td>TC-CLIP</td><td>42.8</td><td><b>83.1</b></td><td>37.2</td><td>44.9</td><td>35.5</td><td class="split">33.6</td><td>78.6</td><td>44.1</td><td>28.2</td><td>27.8</td></tr>
+            <tr><td>XCLIP</td><td>19.6</td><td>55.3</td><td>34.8</td><td>29.2</td><td>25.1</td><td class="split">16.8</td><td>53.5</td><td>23.7</td><td>16.1</td><td>13.8</td></tr>
+            <tr><td>VI-CLIP</td><td>39.6</td><td>55.3</td><td>34.8</td><td>29.2</td><td>25.1</td><td class="split">30.4</td><td>65.2</td><td>30.2</td><td>26.8</td><td>23.7</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">State-of-the-art action recognition models evaluated zero-shot on the real-world and synthetic test splits. Prec.: Precision, Rec.: Recall. Best results in bold.</p>
+
+      <h3>Zero-Shot MLLM Reasoning</h3>
+      <div class="table-wrap">
+        <table class="results">
+          <thead>
+            <tr><th rowspan="2">Model</th><th class="group" colspan="4">Real World</th><th class="group split" colspan="4">Synthetic</th></tr>
+            <tr><th>Top-1 &uarr;</th><th>Prec. &uarr;</th><th>Rec. &uarr;</th><th>F1 &uarr;</th><th class="split">Top-1 &uarr;</th><th>Prec. &uarr;</th><th>Rec. &uarr;</th><th>F1 &uarr;</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GPT-5.1 &dagger;</td><td><b>64.4</b></td><td><b>64.0</b></td><td><b>69.0</b></td><td><b>59.9</b></td><td class="split"><b>79.1</b></td><td><b>86.3</b></td><td><b>77.0</b></td><td><b>75.7</b></td></tr>
+            <tr><td>Qwen3 VL 32B</td><td>54.4</td><td>53.3</td><td>59.2</td><td>47.5</td><td class="split">60.1</td><td>71.2</td><td>58.4</td><td>56.2</td></tr>
+            <tr><td>Gemma 4 31B</td><td>56.2</td><td>56.2</td><td>63.0</td><td>52.6</td><td class="split">77.8</td><td>80.9</td><td>75.6</td><td>73.9</td></tr>
+            <tr><td>LLaVA-NeXT-V 34B</td><td>30.0</td><td>31.4</td><td>35.9</td><td>22.5</td><td class="split">39.1</td><td>41.2</td><td>33.0</td><td>30.1</td></tr>
+            <tr><td>VST 7B</td><td>40.9</td><td>45.9</td><td>51.0</td><td>36.2</td><td class="split">62.2</td><td>74.1</td><td>57.9</td><td>56.4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">&dagger; GPT-5.1 is a paid closed model with limited accessibility.</p>
     </div>
   </body>
 </html>

@@ -26,6 +26,19 @@
       .project figcaption { font-size: 14px; color: #555; margin-top: 8px; }
       .project h2 { font-size: 22px; text-align: center; margin: 10px 0 12px; }
       .project .abstract { font-size: 16px; line-height: 1.6; text-align: justify; }
+      .project .results-tables { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; margin: 22px 0 8px; }
+      .project .results-tables > div { flex: 1 1 380px; min-width: 0; overflow-x: auto; }
+      .project .results-tables h3 { font-size: 16px; text-align: center; margin: 0 0 8px; }
+      .project table.results { width: 100%; border-collapse: collapse; font-size: 14px; border-top: 2px solid #333; border-bottom: 2px solid #333; }
+      .project table.results th, .project table.results td { padding: 6px 8px; text-align: center; white-space: nowrap; }
+      .project table.results th { border-bottom: 1px solid #333; font-weight: 700; }
+      .project table.results th:first-child, .project table.results td:first-child { text-align: left; }
+      .project table.results td.sub { padding-left: 22px; }
+      .project table.results tr.group td { border-top: 1px solid #ccc; }
+      .project table.results tr.highlight td { background: #ececec; }
+      .project table.results .up { color: #228b22; font-size: 12px; }
+      .project table.results .down { color: #c0392b; font-size: 12px; }
+      .project .table-caption { font-size: 14px; color: #555; text-align: center; margin: 6px 0 30px; }
     </style>
   </head>
   <body>
@@ -59,6 +72,51 @@
         <img src="../images/streamprune_2_CAC.png" alt="Content Adaptive Caching (CAC)">
         <figcaption><strong>Content Adaptive Caching (CAC).</strong> <!-- TODO: caption --></figcaption>
       </figure>
+
+      <h2>Results</h2>
+      <p class="abstract">
+        We show that token pruning is achievable in video streams without substantial accuracy loss: applied to our base model, StreamPrune improves streaming throughput by 6.18&times; while reducing tokens by 92.6 &plusmn; 1.8%. These gains do not come from exploiting benchmark shortcuts. Many video benchmarks are answerable from commonsense or textual cues alone, and on such a benchmark pruning would cost nothing regardless of which tokens were removed. We therefore evaluate on benchmarks that require visual grounding. <strong>Accuracy does not drop substantially: video streams can be pruned by over 90% of their visual tokens (92.6% at threshold 0.70) at a cost of only 0.8 points in average accuracy.</strong>
+      </p>
+
+      <div class="results-tables">
+        <div>
+          <h3>(a) Pruning Performance</h3>
+          <table class="results">
+            <thead>
+              <tr><th>Model &ndash; 1 FPS</th><th>Avg Acc &uarr;</th><th>TR% &uarr;</th><th>Thr &uarr;</th><th>KV (GB/h) &darr;</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ReKV-7B</td><td>56.1</td><td>0.0%</td><td>11</td><td>37.7</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.25</td><td>56.2 <span class="up">(+0.1)</span></td><td>41.4%</td><td>19</td><td>22.7</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.50</td><td>56.1 <span class="up">(+0.0)</span></td><td>73.8%</td><td>37</td><td>10.6</td></tr>
+              <tr class="group"><td class="sub">+ StreamPrune @ 0.60</td><td>55.7 <span class="down">(&minus;0.4)</span></td><td>85.2%</td><td>53</td><td>6.3</td></tr>
+              <tr class="highlight"><td class="sub">+ StreamPrune @ 0.70</td><td>55.3 <span class="down">(&minus;0.8)</span></td><td>92.6%</td><td>68</td><td>3.6</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.80</td><td>53.9 <span class="down">(&minus;2.2)</span></td><td>96.4%</td><td>77</td><td>2.2</td></tr>
+              <tr class="group"><td class="sub">+ StreamPrune @ 0.90</td><td>52.0 <span class="down">(&minus;4.1)</span></td><td>98.1%</td><td>81</td><td>1.6</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>(b) Different Backbone</h3>
+          <table class="results">
+            <thead>
+              <tr><th>Backbone</th><th>Acc</th><th>Thr</th><th>TR%</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ReKV-7B</td><td>69.1</td><td>11</td><td>0%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.50</td><td>70.8</td><td>37</td><td>73.8%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.70</td><td>68.0</td><td>68</td><td>92.6%</td></tr>
+              <tr class="group"><td>LongVA-7B</td><td>62.5</td><td>18</td><td>0%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.50</td><td>61.3</td><td>42</td><td>71.1%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.70</td><td>61.0</td><td>69</td><td>84.3%</td></tr>
+              <tr class="group"><td>Flash-VStream-7B</td><td>48.8</td><td>15</td><td>0%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.50</td><td>47.1</td><td>34</td><td>73.3%</td></tr>
+              <tr><td class="sub">+ StreamPrune @ 0.70</td><td>41.2</td><td>59</td><td>85.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="table-caption">TR% = token reduction rate, Thr = encoding throughput, KV = KV-cache growth per hour of video. The shaded row is our default setting (threshold 0.70).</p>
 
     </div>
   </body>
