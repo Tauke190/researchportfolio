@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>StreamPrune</title>
+    <title>StreamPrune: Content-Adaptive Token Pruning for Streaming Video MLLMs</title>
     <meta name="author" content="Avinash Gyawali">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../images/favicon/favicon.ico" type="image/x-icon">
@@ -43,7 +43,7 @@
   </head>
   <body>
     <div class="project">
-      <h1>StreamPrune: Casual and Query-Free Token Pruning for Accelerating Streaming MLLMs</h1>
+      <h1>StreamPrune: Content-Adaptive Token Pruning for Streaming Video MLLMs</h1>
       <p class="authors"><strong class="first-author">* Avinash Gyawali</strong>, Rajat Modi, Yuzhang Shang, Yogesh S Rawat</p>
       <p class="venue">Under Review</p>
 
@@ -58,7 +58,7 @@
 
       <h2>Abstract</h2>
       <p class="abstract">
-        Multimodal Large Language Models (MLLMs) have made significant progress in visual-language reasoning, including long- and short-term video understanding, but sampling video at high frame rates remains computationally expensive. Perceiving fast-changing or transient events requires dense frame sampling, yet the cost of processing dense visual tokens scales with frame rate. Moreover, consecutive frames in a video stream are often highly similar, causing much of this computation to be spent on redundant content. <strong>We propose StreamPrune, a training-free, query-free, plug-and-play token pruning module for streaming video LLMs that discards visually redundant tokens using only inter-frame similarity, measured by the Temporal Token Similarity (TTS) module.</strong> It is independent of the downstream query and transfers across multiple streaming MLLM backbones. <strong>We further introduce the Content-Adaptive Caching (CAC) module, which retains only temporally novel tokens and organizes them in a content-adaptive cache that is compatible with existing streaming retrieval.</strong> Across six streaming video benchmarks, StreamPrune reduces visual tokens by 92.6 &plusmn; 1.8% and increases encoding throughput by 6.18&times;, at an average accuracy drop of only 0.8 &plusmn; 2.9 points (both spreads are standard deviations across the six benchmarks), while outperforming existing pruning methods on StreamingBench and StreamBench. Code will be released publicly after the review process.
+        Streaming video MLLMs typically allocate a fixed visual-token budget to every arriving frame, even when consecutive frames contain little new visual information. As a result, encoding cost and KV-cache growth scale with elapsed time rather than with new visual information. We propose StreamPrune, a training-free, query-free module that prunes visual tokens online before they enter the language-model cache. Its core mechanism, Temporal Token Similarity (TTS), compares each incoming token with the last token actually retained at the same spatial location. Because the reference is updated only when a token is kept, every discarded token remains within the threshold &tau; of the last retained reference, regardless of the length of the dropped-frame run. Content-Adaptive Caching (CAC) then packs retained tokens across frame boundaries, making LLM prefill and KV-cache growth proportional to the retained token count rather than the number of processed frames. Across six streaming video benchmarks, StreamPrune removes 92.6% of visual tokens while retaining 98.6% of the unpruned model&rsquo;s average accuracy, increases encoding throughput by 6.2&times; and reduces KV-cache growth by 10.5&times;. At a moderate operating point, it removes 73.8% of tokens with no change in average accuracy. These results demonstrate that streaming visual compute and memory can be allocated in proportion to measured visual change rather than uniformly across frames. Code will be released publicly after the review process.
       </p>
 
       <!-- TTS figure hidden: information is already conveyed by the overview GIF above.

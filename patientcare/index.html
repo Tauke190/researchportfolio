@@ -39,23 +39,29 @@
   </head>
   <body>
     <div class="project">
-      <h1>PatientCare: A Benchmark for Fine-Grained Clinical Action Understanding in Patient Safety</h1>
-      <p class="authors"><strong class="first-author">* Avinash Gyawali</strong>, Priyank Pathak, Sirshapan Mitra, Shruti Vyas, Yogesh S Rawat</p>
-      <p class="venue">Preprint - arXiv</p>
+      <h1>PatientCare: Synthetic or Real, All Videos Matter in Fine-Grained Clinical Action Recognition Benchmark</h1>
+      <p class="authors"><strong class="first-author">* Avinash Gyawali</strong>, Priyank Pathak, Shruti Vyas, Yogesh S Rawat</p>
+      <p class="venue">Under Review</p>
 
       <div class="buttons">
         <span class="btn disabled">arXiv (Coming Soon)</span>
       </div>
 
       <figure>
-        <img src="../images/patientcare_main.png" alt="PatientCare main figure">
-        <!-- <figcaption>Figure caption goes here.</figcaption> -->
+        <img src="../images/patientcare_overview.png" alt="PatientCare overview: comparison with prior clinical video datasets">
       </figure>
 
       <h2>Abstract</h2>
       <p class="abstract">
-        AI-driven patient care has significant potential to improve hospital safety by detecting hazardous behaviors and continuously monitoring patient activities, especially in the absence of clinical staff, while also reducing operational costs and manual workload. However, progress in this area remains limited due to the lack of diverse, well-annotated datasets capturing a broad spectrum of clinically relevant actions. This gap is largely driven by privacy constraints in real-world hospital care and strict government regulations. Existing action recognition datasets are inadequate for this purpose, as they are typically collected in non-clinical environments and fail to capture fine-grained patient-care activities, e.g. falling on the ground, tampering with IV lines, walking with a walker etc. <strong>We introduce PatientCare, a diverse dataset, with synthetic and real videos, specifically designed for patient monitoring in the hospital domain.</strong> PatientCare focuses on clinically meaningful activities and follows the World Health Organization patient care framework, defining 23 fine-grained action classes. Unlike prior datasets, it emphasizes clinically relevant scenarios, enabling more precise evaluation of action recognition models in patient-care contexts. To demonstrate the utility of PatientCare, <strong>we also establish a realistic video benchmark for hospital-based action recognition and evaluate state-of-the-art action recognition models.</strong> Our results highlight both the inherent challenges of fine-grained patient monitoring and the effectiveness of synthetic data in addressing existing limitations. We will release the dataset, benchmarks, and code to facilitate further research in clinically relevant action understanding.
+        AI-driven patient care has significant potential to improve clinical safety while reducing clinical staff workload and operational costs. However, privacy and regulatory constraints limit the availability of diverse clinically relevant datasets, slowing progress in this area. Existing patient action recognition is typically fragmented across non-clinical datasets, overlooking fine-grained, hospital context activities, e.g. coughing, bedside exercises, etc. In this work, we introduce PatientCare, a clinically relevant benchmark comprising 20 fine-grained patient activities across 1,110 public real-world proxy videos and 9,404 synthetic hospital-context videos; enabling more representative recognition. We conduct extensive evaluations of state-of-the-art action recognition models and MLLMs on both domains, demonstrating the complexity of patient care, while analyzing the role of synthetic training on scarce real-world data. Our results reveal the key challenges of distinguishing visually similar activities based on subtle body and hand movements, as well as the failure of models in recognizing actions when performed by patients lying on hospital beds. We will release the dataset, benchmarks, and code upon acceptance.
       </p>
+
+      <figure>
+        <img src="../images/patientcare_main.png" alt="PatientCare main figure">
+        <!-- <figcaption>Figure caption goes here.</figcaption> -->
+      </figure>
+
+      <!-- Results hidden for now
 
       <h2>Results</h2>
 
@@ -95,6 +101,7 @@
         </table>
       </div>
       <p class="table-caption">&dagger; GPT-5.1 is a paid closed model with limited accessibility.</p>
+      -->
     </div>
   </body>
 </html>
